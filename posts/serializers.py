@@ -7,7 +7,7 @@ User = get_user_model()
 
 
 class PostSerializer(serializers.ModelSerializer):
-    # author = serializers.HyperlinkedIdentityField(many=False, view_name='owner-detail')
+    author = serializers.SerializerMethodField()
 
     # comments = serializers.HyperlinkedRelatedField(queryset=Comment.objects.all(), many=True,
     #                                                view_name='comment-detail')
@@ -15,3 +15,12 @@ class PostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
         fields = ('id', 'title', 'content', 'author', 'publish_date', 'updated')
+
+    def get_author(self, obj):
+        return obj.author.user.username
+
+
+class PostCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Post
+        fields = ('title', 'content', 'author')
