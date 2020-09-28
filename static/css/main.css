@@ -16,3 +16,10 @@
     flex-direction: column;
     justify-content: center;
 }
+
+.form{
+    border: 1px solid #eeeeee;
+    padding: 10px;
+    border-radius: 4px;
+    margin: 10px 0;
+}
